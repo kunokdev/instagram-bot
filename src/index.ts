@@ -8,7 +8,7 @@ import { storage } from "./services/storage";
 import { config } from "./config";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   let buffer: string[] = [];
 
@@ -23,7 +23,6 @@ import { config } from "./config";
         process.exit(1);
       }
 
-      //
       if (response.url().startsWith("https://www.instagram.com/graphql/query/")) {
         const parsedResponse = JSON.parse((await response.buffer()).toString());
         if (parsedResponse?.data?.user?.edge_followed_by?.page_info?.has_next_page) {
@@ -61,6 +60,8 @@ import { config } from "./config";
     await openFollowersModal(page);
   } catch (e) {
     console.error(e);
+    console.log("Done");
+    wait("5min");
     process.exit(1);
   }
 })();
