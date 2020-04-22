@@ -19,9 +19,9 @@ const config = {
     collectionName: STORAGE_COLLECTION_NAME ?? "followed_by_stamps",
   },
   botAccount: {
-    username: BOT_USERNAME,
-    email: BOT_EMAIL,
-    password: BOT_PASSWORD,
+    username: BOT_USERNAME ?? "",
+    email: BOT_EMAIL ?? "",
+    password: BOT_PASSWORD ?? "",
   },
   target: {
     username: TARGET_USERNAME ?? "symbiotikka",

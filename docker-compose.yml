@@ -1,0 +1,13 @@
+version: "3.2"
+services:
+  instabot:
+    restart: always
+    build: "./"
+    environment:
+      STORAGE_URL: ""
+      STORAGE_DB_NAME: ""
+      STORAGE_COLLECTION_NAME: ""
+      BOT_USERNAME: ""
+      BOT_EMAIL: ""
+      BOT_PASSWORD: ""
+      TARGET_USERNAME: ""

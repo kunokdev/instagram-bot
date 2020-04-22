@@ -8,7 +8,8 @@
     "start": "node lib/index.js",
     "build": "tsc",
     "test": "jest",
-    "dev": "ts-node-dev src/index.ts"
+    "dev": "ts-node-dev src/index.ts",
+    "pm2": "pm2"
   },
   "files": [
     "lib"
@@ -29,6 +30,7 @@
     "@types/mongodb": "^3.5.6",
     "@types/puppeteer": "^2.0.1",
     "jest": "^25.3.0",
+    "pm2": "^4.3.0",
     "ts-jest": "^25.3.1",
     "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.8.3"
