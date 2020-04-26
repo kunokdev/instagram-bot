@@ -11,3 +11,5 @@ services:
       BOT_EMAIL: ""
       BOT_PASSWORD: ""
       TARGET_USERNAME: ""
+      HEADLESS_BROWSER: true
+      WAIT_AFTER_FINISH: "5min"

@@ -8,7 +8,7 @@ import { storage } from "./services/storage";
 import { config } from "./config";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: !!config.headlessBrowser });
   const page = await browser.newPage();
   let buffer: string[] = [];
 
@@ -46,6 +46,7 @@ import { config } from "./config";
               .limit(1)
               .toArray()
           )[0];
+          console.log("🔵 Buffer length", buffer.length);
           if (previousItem && isEqual(previousItem.payload, buffer)) return process.exit(0);
           await db.collection(config.storage.collectionName).insertOne({
             createdAt: Date.now(),
@@ -61,7 +62,7 @@ import { config } from "./config";
   } catch (e) {
     console.error(e);
     console.log("Done");
-    wait("5min");
+    wait(config.waitAfterFinish);
     process.exit(1);
   }
 })();

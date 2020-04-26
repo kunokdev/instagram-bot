@@ -10,9 +10,13 @@ const {
   BOT_EMAIL,
   BOT_PASSWORD,
   TARGET_USERNAME,
+  HEADLESS_BROWSER,
+  WAIT_AFTER_FINISH,
 } = process.env;
 
 const config = {
+  headlessBrowser: HEADLESS_BROWSER ?? false,
+  waitAfterFinish: WAIT_AFTER_FINISH || "5min",
   storage: {
     url: STORAGE_URL ?? "",
     dbName: STORAGE_DB_NAME ?? "",
@@ -31,4 +35,5 @@ const config = {
 if (!config.storage.url) throw new Error("config.storage.url required");
 if (!config.storage.dbName) throw new Error("config.storage.dbName required");
 
+console.log("🧩 Config", config);
 export { config };
