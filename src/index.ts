@@ -52,6 +52,7 @@ import { config } from "./config";
             createdAt: Date.now(),
             count: buffer.length,
             payload: buffer,
+            target: config.target,
           });
           process.exit(0);
         }
@@ -62,7 +63,7 @@ import { config } from "./config";
   } catch (e) {
     console.error(e);
     console.log("Done");
-    wait(config.waitAfterFinish);
+    await wait(config.waitAfterFinish);
     process.exit(1);
   }
 })();
