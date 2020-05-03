@@ -47,13 +47,19 @@ import { config } from "./config";
               .toArray()
           )[0];
           console.log("🔵 Buffer length", buffer.length);
-          if (previousItem && isEqual(previousItem.payload, buffer)) return process.exit(0);
+          if (previousItem && isEqual(previousItem.payload, buffer)) {
+            console.log("No changes in data");
+            await wait(config.waitAfterFinish);
+            return process.exit(0);
+          }
           await db.collection(config.storage.collectionName).insertOne({
             createdAt: Date.now(),
             count: buffer.length,
             payload: buffer,
             target: config.target,
           });
+          console.log("Done");
+          await wait(config.waitAfterFinish);
           process.exit(0);
         }
       }
@@ -62,8 +68,6 @@ import { config } from "./config";
     await openFollowersModal(page);
   } catch (e) {
     console.error(e);
-    console.log("Done");
-    await wait(config.waitAfterFinish);
     process.exit(1);
   }
 })();
