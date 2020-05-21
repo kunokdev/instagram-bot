@@ -8,7 +8,11 @@ import { storage } from "./services/storage";
 import { config } from "./config";
 
 (async () => {
-  const browser = await puppeteer.launch({ headless: !!config.headlessBrowser });
+  const browser = await puppeteer.launch({
+    headless: !!config.headlessBrowser,
+    executablePath: !!config.dockerBrowser ? "/usr/bin/chromium-browser" : undefined,
+    args: !!config.dockerBrowser ? ["--no-sandbox", "--headless", "--disable-gpu"] : undefined,
+  });
   const page = await browser.newPage();
   let buffer: string[] = [];
 

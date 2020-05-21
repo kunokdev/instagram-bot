@@ -12,9 +12,11 @@ const {
   TARGET_USERNAME,
   HEADLESS_BROWSER,
   WAIT_AFTER_FINISH,
+  DOCKER_BROWSER,
 } = process.env;
 
 const config = {
+  dockerBrowser: DOCKER_BROWSER ?? false,
   headlessBrowser: HEADLESS_BROWSER ?? false,
   waitAfterFinish: WAIT_AFTER_FINISH || "5min",
   storage: {
